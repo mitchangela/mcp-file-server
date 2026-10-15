@@ -1,0 +1,61 @@
+commit cb72235842e8ab96c3c396080832f853b652d452
+Author: mcp-agent <mcp-agent@localhost>
+Date:   2026-10-15 23:44:16 +0800
+
+    Session 3 (reader): sync PROJECT_STATE with git_log, add checkpoint
+
+ CHECKPOINTS.md   | 3 +++
+ PROJECT_STATE.md | 4 ++--
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+commit bd0818b97a03376b125731d807b347dcc83261ac
+Author: mcp-agent <mcp-agent@localhost>
+Date:   2026-10-15 19:59:12 +0800
+
+    Portfolio site: responsive layout, README, update handoff files
+
+ CHECKPOINTS.md   |  3 +++
+ DECISIONS.md     |  6 ++++++
+ PLAN_LOG.md      |  3 +++
+ PROJECT_STATE.md |  4 ++--
+ site/README.md   | 23 +++++++++++++++++++++++
+ site/style.css   | 23 +++++++++++++++++++++++
+ 6 files changed, 60 insertions(+), 2 deletions(-)
+
+commit a40117dc678133ea3e6cfa79412b0c336bd42216
+Author: mcp-agent <mcp-agent@localhost>
+Date:   2026-10-15 19:56:52 +0800
+
+    Add portfolio site draft (HTML, CSS, sample content) and update handoff files
+
+ CHECKPOINTS.md   |  3 ++
+ PLAN_LOG.md      |  6 ++++
+ PROJECT_STATE.md |  5 ++-
+ site/index.html  | 82 ++++++++++++++++++++++++++++++++++++++++++++++++
+ site/style.css   | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 190 insertions(+), 1 deletion(-)
+
+commit b91ad86cf3ce5a4d800c2296d64a9a3f1507ffc8
+Author: mcp-agent <mcp-agent@localhost>
+Date:   2026-10-15 19:51:01 +0800
+
+    Record M4 guard tests and M1-M3 status
+
+ CHECKPOINTS.md   | 12 ++++++++++++
+ DECISIONS.md     |  6 ++++++
+ PLAN_LOG.md      |  6 ++++++
+ PROJECT_STATE.md |  7 +++++--
+ 4 files changed, 29 insertions(+), 2 deletions(-)
+
+commit 095e7ab687e37a5ade33b64aab7c10e02ab7ad59
+Author: mitchangela <mmitchangela@gmail.com>
+Date:   2026-10-15 18:10:41 +0800
+
+    Add handoff files and project goal
+
+ .gitkeep         |  0
+ CHECKPOINTS.md   |  5 +++++
+ DECISIONS.md     |  4 ++++
+ PLAN_LOG.md      |  4 ++++
+ PROJECT_STATE.md | 22 ++++++++++++++++++++++
+ 5 files changed, 35 insertions(+)

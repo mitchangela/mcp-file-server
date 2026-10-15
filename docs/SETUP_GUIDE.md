@@ -5,12 +5,12 @@ in this folder. Work through these in order. Tick each box when it is done.
 
 ## Step 4. Repo skeleton
 
-- [ ] Unzip, open the folder in your editor
-- [ ] `git init`, then make the first commit. Say honestly what it is, for example:
+- [/] Unzip, open the folder in your editor
+- [/] `git init`, then make the first commit. Say honestly what it is, for example:
       `Add initial scaffold generated with Claude`
-- [ ] Create the GitHub repo and push: `git remote add origin <url>`, `git push -u origin main`
-- [ ] Create the venv and install: `python -m venv .venv`, activate it, `pip install -r requirements-dev.txt`
-- [ ] Read through every file in `sandbox.py`, `audit.py`, `auth.py` and `tools/`. You will be asked
+- [/] Create the GitHub repo and push: `git remote add origin <url>`, `git push -u origin main`
+- [/] Create the venv and install: `python -m venv .venv`, activate it, `pip install -r requirements-dev.txt`
+- [/] Read through every file in `sandbox.py`, `audit.py`, `auth.py` and `tools/`. You will be asked
       about them in the Q&A, so you need to be able to explain each one.
 
 From here on, commit your own work in small steps with clear messages (testing, config
@@ -18,19 +18,19 @@ changes, fixes, docs). The rubric reads your git history.
 
 ## Step 5. Handoff files
 
-- [ ] They are copied from `templates/` into `workspace/` the first time the server starts
-- [ ] Open `workspace/PROJECT_STATE.md` and fill in the goal
+- [/] They are copied from `templates/` into `workspace/` the first time the server starts
+- [/] Open `workspace/PROJECT_STATE.md` and fill in the goal
 
 ## Step 6. Tool design
 
-- [ ] Read the tool table in `README.md`. Be ready to say why each tool is single-purpose
-- [ ] Be ready to explain why `write_file` needs `if_version` to overwrite
+- [/] Read the tool table in `README.md`. Be ready to say why each tool is single-purpose
+- [/] Be ready to explain why `write_file` needs `if_version` to overwrite
 
 ## Step 7. Security prep
 
-- [ ] `python scripts/gen_token.py` (run it once per token)
-- [ ] `cp .env.example .env`, paste tokens, set `PUBLIC_HOST` to your ngrok domain
-- [ ] Check `.env` is not tracked: `git status` should not list it
+- [/] `python scripts/gen_token.py` (run it once per token)
+- [/] `cp .env.example .env`, paste tokens, set `PUBLIC_HOST` to your ngrok domain
+- [/] Check `.env` is not tracked: `git status` should not list it
 
 ## Step 8. Tests
 
