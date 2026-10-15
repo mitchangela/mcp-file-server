@@ -14,6 +14,8 @@ BAD_PATHS = [
     "..%2fsecret.txt",
     "%2e%2e/secret.txt",
     "..\\secret.txt",
+        "..%2Fsecret.txt",
+    "\\\\server\\share\\x.txt",
     "a\\..\\..\\x",
     "C:\\Windows\\system.ini",
     "C:/Windows/system.ini",
@@ -23,7 +25,7 @@ BAD_PATHS = [
     "sub/.git/hooks/pre-commit",
 ]
 
-GOOD_PATHS = ["", ".", "notes.md", "src/app.py", "a/b/c/d.txt", "./notes.md", "sub/../notes.md".replace("sub/../", "")]
+GOOD_PATHS = ["my..notes.md", "", ".", "notes.md", "src/app.py", "a/b/c/d.txt", "./notes.md", "sub/../notes.md".replace("sub/../", "")]
 
 
 @pytest.mark.parametrize("path", BAD_PATHS)
