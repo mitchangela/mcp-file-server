@@ -8,3 +8,5 @@ logs/*.jsonl
 # the agents' workspace is its own git repo, created on first start
 workspace/*
 !workspace/.gitkeep
+
+data/
