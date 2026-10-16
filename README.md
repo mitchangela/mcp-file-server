@@ -88,8 +88,27 @@ Claude: Settings > Connectors > Add custom connector, then paste the URL.
 | `git_commit` | writer | Stage and commit |
 | `append_handoff` | writer | Append to PLAN_LOG, CHECKPOINTS or DECISIONS |
 | `delete_file` | admin | Delete one file, needs `confirm=true` |
+| `save_handoff` | writer | Save a dated handoff note (`title`, `content` up to 8000 chars) in `workspace/handoffs/` |
+| `load_handoff` | reader | Load the newest handoff note matching a title |
+| `list_handoffs` | reader | List recent handoff notes |
+| `reindex` | admin | Scan the `ASSET_ROOTS` design folders and update the SQLite asset index |
+| `search_assets` | reader | Search indexed files by name, tag or client; month/year words filter by modified date |
+| `list_recent` | reader | Newest indexed files, optionally by file type |
+| `find_by_client` | reader | All indexed files tagged with a client name |
+| `tag_asset` | writer | Add tags and a client to a file or folder in the index |
 
 Errors come back with `isError` and a plain message. No stack traces reach the agent.
+
+## Freelance desk tools
+
+Two extra tool groups for my freelance design work.
+
+- **Handoff notes:** `save_handoff`, `load_handoff` and `list_handoffs` store dated notes
+  (`YYYY-MM-DD_title.txt`) in `workspace/handoffs/`, so a new chat can pick up where the last one stopped.
+- **Asset librarian:** `reindex`, `search_assets`, `list_recent`, `find_by_client` and `tag_asset`
+  keep a SQLite index of my design files. It is read-only on the design folders, skips junk
+  folders, and only re-indexes changed files. Set `ASSET_ROOTS` in `.env` to full folder paths
+  separated by `;`. A drive root or home folder is refused.
 
 ## Handoff protocol
 
@@ -114,10 +133,11 @@ config.py          settings from environment variables
 sandbox.py         path resolving and escape checks
 auth.py            bearer token / secret path, roles
 audit.py           role check, audit log, error handling for every tool
-tools/             files.py, search.py, git_tools.py, handoff.py
+tools/             files.py, search.py, git_tools.py, handoff.py, handoff_notes.py, assets.py
 tests/             sandbox and tool tests
 templates/         starting copies of the four handoff files
 workspace/         the agents' sandbox (own git repo, created on first start)
+data/              assets.db, the local asset index (git-ignored)
 scripts/           gen_token, smoke_test, export_evidence
 docs/              summary, setup guide, report and transcript templates
 evidence/          exported handoff files and logs for submission
