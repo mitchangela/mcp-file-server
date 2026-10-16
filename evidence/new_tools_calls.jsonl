@@ -1,0 +1,13 @@
+﻿{"ts": "2026-10-16T10:43:20+00:00", "tool": "reindex", "role": null, "args": {}, "ok": false, "error": "Tool 'reindex' needs the 'admin' role; this connection has 'None'.", "ms": 1}
+{"ts": "2026-10-16T10:43:21+00:00", "tool": "reindex", "role": null, "args": {}, "ok": false, "error": "Tool 'reindex' needs the 'admin' role; this connection has 'None'.", "ms": 0}
+{"ts": "2026-10-16T12:46:51+00:00", "tool": "reindex", "role": "admin", "args": {}, "ok": false, "error": "Asset folder not found: C:\\Users\\<redacted>\\Documents\\SomeDesignFolder", "ms": 3}
+{"ts": "2026-10-16T12:51:57+00:00", "tool": "reindex", "role": "admin", "args": {}, "ok": true, "ms": 41}
+{"ts": "2026-10-16T12:54:15+00:00", "tool": "list_recent", "role": "admin", "args": {"file_type": null, "limit": 5}, "ok": true, "ms": 5}
+{"ts": "2026-10-16T12:56:01+00:00", "tool": "search_assets", "role": "admin", "args": {"query": "android-icon-monochrome", "file_type": null, "limit": 20}, "ok": true, "ms": 5}
+{"ts": "2026-10-16T12:59:22+00:00", "tool": "list_recent", "role": "admin", "args": {"file_type": null, "limit": 10}, "ok": true, "ms": 4}
+{"ts": "2026-10-16T12:59:27+00:00", "tool": "list_recent", "role": "admin", "args": {"file_type": null, "limit": 5}, "ok": true, "ms": 3}
+{"ts": "2026-10-16T13:00:57+00:00", "tool": "tag_asset", "role": "admin", "args": {"path": "C:\\Users\\<redacted>\\Downloads\\<design-folder>\\android-icon-monochrome.png", "tags": ["test"], "client": "TestClient"}, "ok": true, "ms": 9}
+{"ts": "2026-10-16T13:01:32+00:00", "tool": "find_by_client", "role": "admin", "args": {"name": "TestClient", "limit": 50}, "ok": true, "ms": 5}
+{"ts": "2026-10-16T13:02:23+00:00", "tool": "save_handoff", "role": "admin", "args": {"title": "test handoff", "content": "Testing the handoff tool."}, "ok": true, "ms": 8}
+{"ts": "2026-10-16T13:02:38+00:00", "tool": "list_handoffs", "role": "admin", "args": {"limit": 5}, "ok": true, "ms": 2}
+{"ts": "2026-10-16T13:02:52+00:00", "tool": "load_handoff", "role": "admin", "args": {"title": "test handoff"}, "ok": true, "ms": 25}
