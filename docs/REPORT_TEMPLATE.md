@@ -19,7 +19,6 @@ Things I rejected, and why:
 
 ## 2. Tool design
 
-## 2. Tool design
 20 tools, each doing one job. 12 are read-only, 6 are writer tools, and 2 are admin-only.
 
 - **Small outputs:** `read_file` reads by line range (offset and limit), `search_code` and `git_diff` are capped (the diff at 200 lines), and `read_state` gives the project state and latest log in one call. In my demo, each new chat started with a single `read_state` and picked up from there.
@@ -31,15 +30,11 @@ Things I rejected, and why:
 
 ## 3. Agent and tool management
 
-## 3. Agent and tool management
-
 - **Three roles, one token each:** reader, writer and admin. The server checks the role on every call. In my demo, the reader token could read the project but was refused when it tried to write: "Tool 'append_handoff' needs the 'writer' role; this connection has 'reader'."
 - **Delete is gated three ways:** it needs the admin role, it needs `confirm=true`, and the four handoff files can't be deleted (this last one is from the tool description, and I didn't test deleting a handoff file). Without confirm, my delete was refused, and with `confirm=true` it went through.
-- **Every call is logged:** time, role, tool, shortened arguments, result, and duration. Long file contents are cut down, so the log stays small and doesn't hold file text. My demo run is 35 calls, and the full log has 83.
+- **Every call is logged:** time, role, tool, shortened arguments, result, and duration. Long file contents are cut down, so the log stays small and doesn't hold file text. My demo run is 35 calls. The full log had 83 calls at the time of the demo and has 96 now, after the 13 calls for the 8 freelance desk tools.
 - **Handoff across sessions:** PROJECT_STATE, PLAN_LOG, CHECKPOINTS and DECISIONS let a fresh chat pick up with no context. Session 2 started with one `read_state` call and finished the work without asking what the project was. Session 3 (reader) reviewed it and caught a stale line in PROJECT_STATE, which I fixed afterward.
 - **A second layer on the client side:** Claude's connector settings ask for approval before each tool call, so a person can still stop a call that the server would allow.
-
-## 4. Security and tradeoffs
 
 ## 4. Security and tradeoffs
 
@@ -58,8 +53,6 @@ Things I rejected, and why:
 | DNS rebinding / wrong Host | Allowed host list | It depends on `PUBLIC_HOST` being right in `.env` |
 
 **What I would add next:** rate limiting, OAuth so no token has to sit in the URL, and a separate identity for each agent so the log shows which agent did what.
-
-## 5. What I learned
 
 ## 5. What I learned
 
