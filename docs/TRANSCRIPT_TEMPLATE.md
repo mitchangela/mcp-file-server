@@ -149,3 +149,6 @@ Totals: 35 calls, 1 error (on purpose), 0 retries.
 | Delete without confirm | Deletion not confirmed. Call again with confirm=true if you are sure. |
 | Path escape | Path may not contain '..'. / Absolute paths are not allowed. Use a path relative to the workspace root. |
 | Reader token tries to write | Tool 'append_handoff' needs the 'writer' role; this connection has 'reader'. |
+
+
+Note: the 8 handoff-note and asset-librarian tools were added after this transcript. Their calls are in evidence/new_tools_calls.jsonl, and the 35-call table above is unchanged.
