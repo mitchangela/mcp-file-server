@@ -34,42 +34,42 @@ changes, fixes, docs). The rubric reads your git history.
 
 ## Step 8. Tests
 
-- [ ] `pytest -q` should show all tests passing (45 when this was built)
-- [ ] Add at least one traversal case of your own to `tests/test_sandbox.py`
+- [/] `pytest -q` should show all tests passing (45 when this was built)
+- [/] Add at least one traversal case of your own to `tests/test_sandbox.py`
 
 ## M1. Skeleton in MCP Inspector
 
-- [ ] Run Inspector (command in README, stdio mode)
-- [ ] Open Tools, run `list_files`, then `read_state`
-- [ ] Screenshot it for your report
+- [/] Run Inspector (command in README, stdio mode)
+- [/] Open Tools, run `list_files`, then `read_state`
+- [/] Screenshot it for your report
 
 ## M2. Sandbox
 
-- [ ] In Inspector, call `read_file` with `../../etc/passwd` and `/etc/passwd`. Both must return an error
-- [ ] Screenshot the errors and the passing pytest run
+- [/] In Inspector, call `read_file` with `../../etc/passwd` and `/etc/passwd`. Both must return an error
+- [/] Screenshot the errors and the passing pytest run
 
 ## M3. Deploy
 
-- [ ] `pm2 start ecosystem.config.js` then `pm2 status` (both apps online)
-- [ ] `curl https://<domain>/health` returns `{"status":"ok"}`
-- [ ] `python scripts/smoke_test.py https://<domain>/mcp <admin> <reader>`: all checks pass
-- [ ] Add the custom connector in Claude (README, "Connect a client"). Free plan allows one connector
-- [ ] If Claude's form has no header field, use the secret-path URL and note the tradeoff in your report
-- [ ] Restart test: `pm2 restart all`, then check the connector still works
-- [ ] Reboot persistence: `pm2 save` and `pm2 startup` (Linux/macOS). On Windows use a startup
+- [/] `pm2 start ecosystem.config.js` then `pm2 status` (both apps online)
+- [/] `curl https://<domain>/health` returns `{"status":"ok"}`
+- [/] `python scripts/smoke_test.py https://<domain>/mcp <admin> <reader>`: all checks pass
+- [/] Add the custom connector in Claude (README, "Connect a client"). Free plan allows one connector
+- [/] If Claude's form has no header field, use the secret-path URL and note the tradeoff in your report
+- [/] Restart test: `pm2 restart all`, then check the connector still works
+- [/] Reboot persistence: `pm2 save` and `pm2 startup` (Linux/macOS). On Windows use a startup
       task or the `pm2-windows-startup` package, and say which you used
 
 ## M4. Protocol
 
-- [ ] Run a short session that touches all four handoff files
-- [ ] Try a bad write on purpose (overwrite without version, stale version, delete without confirm)
+- [/] Run a short session that touches all four handoff files
+- [/] Try a bad write on purpose (overwrite without version, stale version, delete without confirm)
       and keep the error messages for the report
 
 ## M5. Prove it
 
-- [ ] Run the demo task in `docs/DEMO_TASK.md` across 2 or more sessions
+- [/] Run the demo task in `docs/DEMO_TASK.md` across 2 or more sessions
 - [ ] Save the chat transcript, fill `docs/TRANSCRIPT_TEMPLATE.md`
-- [ ] `python scripts/export_evidence.py`, then check `evidence/` for anything private and commit it
+- [/] `python scripts/export_evidence.py`, then check `evidence/` for anything private and commit it
 - [ ] Write the report from `docs/REPORT_TEMPLATE.md` in your own words
 - [ ] Practice the 5-minute demo twice
 
