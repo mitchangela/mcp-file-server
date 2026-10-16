@@ -1,5 +1,6 @@
 # Report: stack, tool design, security tradeoffs
 
+
 ## 1. Stack and why
 
 | Layer | Choice | Why |
@@ -10,7 +11,7 @@
 | Tunnel | ngrok, static domain | The URL stayed the same after `pm2 restart all`, so the connector kept working |
 | Process manager | pm2 | Runs the server and the tunnel together and restarts them. On Windows I used `pm2-windows-startup` for reboot persistence |
 | Version control | GitHub repo for the server code. Separate git repo at the workspace root for agent output | Agent commits stay apart from my code. The log shows agent commits like `a40117d` and `bd0818b` |
-| Testing | pytest (46 passed, 2 skipped), MCP Inspector, smoke test (10/10) | The 2 skips are symlink tests, which can't run on Windows without admin rights |
+| Testing | pytest (71 passed, 2 skipped), MCP Inspector, smoke test (10/10) | The 2 skips are symlink tests, which can't run on Windows without admin rights |
 
 Things I rejected, and why:
 - **stdio only:** Claude's connector can't reach a local process. It needs a public HTTPS URL, so I used HTTP with ngrok. I kept stdio just for Inspector testing.
@@ -19,14 +20,14 @@ Things I rejected, and why:
 ## 2. Tool design
 
 ## 2. Tool design
-
-12 tools, each doing one job. 7 are read-only, 4 are writer tools, and 1 is admin-only. Splitting reads from writes is what lets each role get only what it needs.
+20 tools, each doing one job. 12 are read-only, 6 are writer tools, and 2 are admin-only.
 
 - **Small outputs:** `read_file` reads by line range (offset and limit), `search_code` and `git_diff` are capped (the diff at 200 lines), and `read_state` gives the project state and latest log in one call. In my demo, each new chat started with a single `read_state` and picked up from there.
 - **Read before write:** replacing a file needs `if_version`. In my test, a file went from version `7281f9935640` to `1280b5c521a6` after an edit, and a write using the old version was rejected. This stops two agents from silently overwriting each other.
 - **Precise edits:** `str_replace` changes one exact match, so the agent doesn't resend a whole file. In Session 2 it edited `style.css` with the version from its earlier read.
 - **Plain errors:** failures come back as `isError` with a message that says what to do next, like "File already exists. Read it first and pass if_version, or use str_replace for a small edit." No stack traces.
 - **Handoff tools:** `append_handoff` only adds to PLAN_LOG, CHECKPOINTS or DECISIONS, so an agent can't rewrite the history.
+- **Freelance desk tools:** the instructor asked for a feature that helps with my own niche, so I added dated handoff notes (`save_handoff`, `load_handoff`, `list_handoffs`) and an asset librarian (`reindex`, `search_assets`, `list_recent`, `find_by_client`, `tag_asset`). The librarian only reads my design folders. It writes its index to a separate SQLite file, and `reindex` is admin-only because it scans the disk.
 
 ## 3. Agent and tool management
 
@@ -46,6 +47,7 @@ Things I rejected, and why:
 |---|---|---|
 | Path traversal (`..`, absolute, encoded, backslash, null byte) | One `resolve()` for every path, tested | In Inspector, `../../etc/passwd` and `/etc/passwd` were both refused. pytest covers the rest, and I added `..%2F`, a network path and a valid name with two dots |
 | Symlink pointing outside | `resolve()` follows links, then checks the root | The two symlink tests were skipped on my Windows machine, so I didn't see them run |
+| Asset tools reading too much of my disk | Only folders listed in `ASSET_ROOTS` are scanned; my home folder is refused (a drive root is refused in the code too) | `test_refuses_home_folder` in tests/test_assets.py |
 | Tampering with git hooks/config | `.git` blocked in file tools; git runs without a shell | pytest rejects `.git/config` and `.git/hooks` paths |
 | Open public endpoint | Token required on every request except `/health` | Smoke test passed 10/10. Tokens are long-lived, and rotating means editing `.env`. I rotated mine during setup |
 | Token in URL (secret-path mode) | Used only because Claude's connector tried OAuth on the plain `/mcp` URL and failed | The URL can appear in ngrok logs and browser history, and anyone with it has that role. I hid it in screenshots. A header token is safer |
